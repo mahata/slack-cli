@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-// Config represents Slack configuration data
+// Conf represents Slack configuration data
 type Conf struct {
 	Token    string `json:"token"`
 	Channel  string `json:"channel"`
