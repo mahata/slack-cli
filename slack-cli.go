@@ -11,14 +11,15 @@ import (
 )
 
 // Config represents Slack configuration data
-type Config struct {
+type Conf struct {
 	Token    string `json:"token"`
 	Channel  string `json:"channel"`
 	Username string `json:"username"`
 }
 
+var conf Conf
+
 func main() {
-	var config Config
 
 	usr, err := user.Current()
 	if err != nil {
@@ -33,9 +34,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = json.Unmarshal(file, &config)
+	err = json.Unmarshal(file, &conf)
 	if err != nil {
-		os.Stderr.WriteString("Can't parse config.json file. Is the format correct?\n")
+		os.Stderr.WriteString("Can't parse ~/.slack-cli.json. Is the format correct?\n")
 		os.Exit(1)
 	}
 
@@ -45,9 +46,9 @@ func main() {
 	}
 
 	query := fmt.Sprintf("token=%s&channel=%s&username=%s&text=%s",
-		config.Token,
-		config.Channel,
-		config.Username,
+		conf.Token,
+		conf.Channel,
+		conf.Username,
 		strings.Join(os.Args[1:], " "))
 
 	body := strings.NewReader(query)
