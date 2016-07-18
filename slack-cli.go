@@ -19,8 +19,7 @@ type Conf struct {
 
 var conf Conf
 
-func main() {
-
+func loadConf() {
 	usr, err := user.Current()
 	if err != nil {
 		os.Stderr.WriteString("Can't get current user info... Are you an alien?\n")
@@ -44,6 +43,10 @@ func main() {
 		os.Stderr.WriteString("Usage: slack-cli MESSAGE-TO-SEND\n")
 		os.Exit(1)
 	}
+}
+
+func main() {
+	loadConf()
 
 	query := fmt.Sprintf("token=%s&channel=%s&username=%s&text=%s",
 		conf.Token,
