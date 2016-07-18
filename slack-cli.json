@@ -1,0 +1,5 @@
+{
+    "token": "xoxp-YOUR-SLACK-TOKEN",
+    "channel": "#YOUR-SLACK-CHANNEL",
+    "username": "YOUR-USER-NAME"
+}
