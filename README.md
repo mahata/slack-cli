@@ -12,4 +12,12 @@ Provided that you built `slack-cli` by `go build -o slack-cli slack-cli.go`:
 
 ```
 $ slack-cli MESSAGE YOU WANT TO POST
+
+(or)
+
+$ slack-cli -ch=CHANNEL_TO_POST Hello
+
+(or)
+
+$ slack-cli -ch=CHANNEL_TO_POST -uname=JANE_DOE Hello
 ```
