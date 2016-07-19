@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -48,10 +49,16 @@ func loadConf() {
 func main() {
 	loadConf()
 
+	var (
+		ch    = flag.String("ch", conf.Channel, "Channel to post message to")
+		uname = flag.String("uname", conf.Channel, "User name to use for posting message")
+	)
+	flag.Parse()
+
 	query := fmt.Sprintf("token=%s&channel=%s&username=%s&text=%s",
 		conf.Token,
-		conf.Channel,
-		conf.Username,
+		*ch,
+		*uname,
 		strings.Join(os.Args[1:], " "))
 
 	body := strings.NewReader(query)
