@@ -59,7 +59,7 @@ func main() {
 		conf.Token,
 		*ch,
 		*uname,
-		strings.Join(os.Args[1:], " "))
+		strings.Join(flag.Args(), " "))
 
 	body := strings.NewReader(query)
 	req, err := http.NewRequest("POST", "https://slack.com/api/chat.postMessage", body)
